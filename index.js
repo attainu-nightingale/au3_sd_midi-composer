@@ -69,9 +69,6 @@ app.post('/login', (req, res) => {
     var flag = false;
     db.collection('users').find({ username: req.body.username }).toArray(function (err, data) {
         if (err) throw err;
-        console.log(data)
-        console.log(data[0].username)
-        console.log(data[0].password)
         if (req.body.username == data[0].username && req.body.password == data[0].password) {
             flag = true;
         }
@@ -81,7 +78,7 @@ app.post('/login', (req, res) => {
             res.redirect("/dashboard");
         }
         else
-            res.send("Invalid Username/Password !!!");
+            res.redirect("/login");
     })
 })
 app.get('/dashboard', (req, res) => {
