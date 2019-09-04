@@ -1,0 +1,67 @@
+@import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
+@import url('https://fonts.googleapis.com/css?family=Lobster|Poppins&display=swap');
+
+/* font-family: 'Lobster', cursive;
+font-family: 'Poppins', sans-serif; */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.credits-box {
+    position: absolute;
+    width: 100%;
+    top: 25vh;
+}
+
+.credits h1 {
+    font-family: "Lobster", cursive;
+    font-size: 5rem;
+    padding-top: 10vh;
+}
+
+.credits ol li {
+    list-style-type: none;
+    padding: .5rem;
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+
+.credits ol li a {
+    color: white;
+}
+
+@media (max-width: 740px) {
+
+    html,
+    body,
+    header,
+    .view {
+        height: 100vh;
+    }
+
+    .credits h1 {
+        font-family: "Lobster", cursive;
+        font-size: 5rem;
+        padding-top: 0.1vh;
+    }
+}
+
+@media (min-width: 800px) and (max-width: 850px) {
+
+    html,
+    body,
+    header,
+    .view {
+        height: 100vh;
+    }
+
+    .credits h1 {
+        font-family: "Lobster", cursive;
+        font-size: 5rem;
+        padding-top: 0.1vh;
+    }
+
+}
