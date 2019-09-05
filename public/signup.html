@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="https://res.cloudinary.com/degnified/image/upload/v1567584916/logo_qwvzmj.png">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -19,7 +20,7 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
 
-    <title>Musify SignUp</title>
+    <title>Musify | SignUp</title>
 
 
 </head>
@@ -30,7 +31,7 @@
         <div class="box-black"></div>
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" id="navbar">
             <div class="container">
-                <a class="navbar-brand" id="brand" href="#">
+                <a class="navbar-brand" id="brand" href="/">
                     <strong>MusiFy ***</strong>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -40,11 +41,6 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/">Home
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/login">Login</a>
                         </li>
@@ -53,7 +49,7 @@
                             <a class="nav-link" href="/signup">SignUp</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Credits</a>
+                            <a class="nav-link" href="/credits">Credits</a>
                         </li>
                     </ul>
                 </div>
@@ -85,6 +81,11 @@
                                     <i class="fas fa-envelope-open-text"></i>
                                     <input type="email" placeholder="Email" name="email" required />
                                 </div>
+                                <div class="textbox">
+                                    <label>Username</label>
+                                    <i class="fas fa-at"></i>
+                                    <input type="text" placeholder="Username" name="username" required />
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12" id="formCol2">
@@ -108,7 +109,7 @@
                                     Terms of use
                                     and Privacy Policy.</small>
                                 <p>
-                                    Already have an account? <a href="/login1.html"
+                                    Already have an account? <a href="/login"
                                         class="ml-3 btn btn-success my-1 btn-rounded waves-effect z-depth-0">Log
                                         in</a>
                                 </P>

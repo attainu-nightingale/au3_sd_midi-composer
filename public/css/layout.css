@@ -1,0 +1,19 @@
+@import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
+@import url('https://fonts.googleapis.com/css?family=Lobster|Poppins&display=swap');
+
+/* font-family: 'Lobster', cursive;
+font-family: 'Poppins', sans-serif; */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+#brand {
+    font-family: 'Lobster', cursive;
+}

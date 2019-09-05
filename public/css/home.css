@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Lobster&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Lobster|Poppins&display=swap');
+
+/* font-family: 'Lobster', cursive;
+font-family: 'Poppins', sans-serif; */
 /* Required for full background image */
 
 html,
@@ -6,26 +10,96 @@ body,
 header,
 .view {
     height: 91vh;
+    font-family: 'Poppins', sans-serif;
 }
 
-@media (max-width: 740px) {
+@media (min-width: 320px) and (max-width : 799px) {
 
     html,
     body,
     header,
     .view {
-        height: 91vh;
+        height: 100vh;
+    }
+
+    #signup-box h1 {
+        font-size: 1rem;
+        margin-top: 0;
+        margin-bottom: 0.5em;
+    }
+
+    #signup-box {
+        display: block;
+    }
+
+    #formCol1 {
+        font-size: 0.7rem;
+    }
+
+    #formCol2 {
+        top: 35vh;
+        font-size: 0.7rem;
+    }
+
+    .sub-btn {
+        font-size: 0.7rem;
+
+    }
+
+    .textbox {
+        width: 100%;
+        font-size: 1em;
+        overflow: hidden;
+        padding: 0.2em 0.1em;
+        border-bottom: 0.1em solid #4caf50;
+    }
+
+    .login-col {
+        margin-left: auto;
     }
 }
 
-@media (min-width: 800px) and (max-width: 850px) {
+@media (min-width: 800px) and (max-width: 990px) {
 
     html,
     body,
     header,
     .view {
-        height: 90vh;
+        height: 100vh;
+        width: 100%;
     }
+
+    #signup-box {
+        display: block;
+    }
+
+    #formCol1 {
+        font-size: 0.7rem;
+    }
+
+    #formCol2 {
+        top: 12vh;
+        font-size: 1rem;
+    }
+
+    .login-col {
+        margin-left: auto;
+    }
+
+    .sub-btn {
+        font-size: 0.7rem;
+
+    }
+
+    .textbox {
+        width: 100%;
+        font-size: 1em;
+        overflow: hidden;
+        padding: 0.2em 0.1em;
+        border-bottom: 0.1em solid #4caf50;
+    }
+
+
 }
 
 #navbar {
@@ -59,4 +133,5 @@ h3 {
 
 footer {
     background-color: black;
+    height: 9vh;
 }
