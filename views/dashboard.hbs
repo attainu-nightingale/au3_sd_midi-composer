@@ -1,0 +1,41 @@
+<div class="container-fluid ml-0">
+    <div class="row">
+        <div class="col-md-12 col-lg-3 col-sm-12 bg-dark h-100" style="position: fixed;">
+            <div class="card">
+                <div class='music-card'>
+                    <img class='image'
+                        src="https://res.cloudinary.com/degnified/image/upload/v1567680013/coverart_pnnvig.jpg"></img>
+                    <div class='info'>
+                        <h2 class='title text-center'>Hall Of Fame</h2>
+                        <div class='artist text-center'>The Script</div>
+                    </div>
+                    <div id="player">
+                        <audio src="" autoplay controls>
+                        </audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="leftPane" class="col-sm-12 col-lg-9 col-md-12 mt-3 d-flex">
+        <div class="card-columns">
+            {{#each data}}
+            <div class="card" id="songCard">
+                <img class="card-img" src="{{this .albumArt}}" alt="Album Art">
+                <div class="card-img-overlay p-0 d-flex flex-column">
+                    <h5 class=" bg-secondary card-title text-warning mt-auto mb-0 px-3 pl-4 py-2">
+                        {{this.title}}
+                    </h5>
+                    <h6 class=" bg-secondary card-subtitle text-warning mb-0 px-3 py-2 pl-4"> {{this.author}} </h6>
+                    <div class="link d-flex bg-secondary rounded-bottom  mb-0 pb-3 pt-1 pl-2">
+                        <a value="{{this.url}}" onclick="playThis(event)"
+                            class="card-link bg-secondary px-3 py-1 rounded text-warning">Play</a>
+                        <a value="{{this._id}}" class="card-link bg-secondary px-3 py-1 rounded text-warning"
+                            onclick="deleteCreation(event)">Delete</a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

@@ -83,10 +83,22 @@ app.post('/login', (req, res) => {
 })
 app.get('/dashboard', (req, res) => {
     if (req.session.loggedIn == true) {
-        res.render('dashboard.hbs', {
-            style: '/css/dashboard.css',
-            script: '/js/dashboard.js'
+        db.collection('creations').find({ privacy: true }).toArray(function (err, data) {
+            if (err) throw err;
+            res.render('dashboard.hbs', {
+                title: "MusiFy | Dashboard",
+                style: '/css/dashboard.css',
+                script: '/js/dashboard.js',
+                data: data,
+            })
         })
     }
     else { res.redirect('/login') }
+})
+
+//delete route for creation
+app.delete('/creations/delete/:id', (req, res) => {
+    db.collection('creations').deleteOne({ _id: ObjectId(req.params.id) }, function (err, data) {
+        if (err) throw err
+    })
 })
