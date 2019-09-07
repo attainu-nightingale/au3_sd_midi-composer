@@ -25,7 +25,8 @@ form {
     height: 100%;
     position: absolute;
     color: white;
-    margin-left: 12%
+    margin-left: 12%;
+    font-size: 0.8rem
 }
 
 #signup-box h1 {
