@@ -1,5 +1,3 @@
-
-
 function playThis(event) {
     var url = $(event.target).attr("value")
     console.log(url)
@@ -7,11 +5,11 @@ function playThis(event) {
 }
 
 
-function deleteCreation(event) {
-    var url = '/creations/delete/' + $(event.target).attr("value")
-    $.ajax({
-        url: url,
-        type: 'delete'
-    })
-    window.location.replace('/dashboard')
-}
+// function deleteCreation(event) {
+//     var url = '/creations/delete/' + $(event.target).attr("value")
+//     $.ajax({
+//         url: url,
+//         type: 'delete'
+//     })
+//     window.location.replace('/dashboard')
+// }
