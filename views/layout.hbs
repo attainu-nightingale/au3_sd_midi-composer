@@ -50,13 +50,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/composer">Composer</a>
                         </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Profile">Profile</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/help">Help</a>
                         </li>
+                        <li class="nav-item d-flex align-items-center mr-1">
+                            <a class="nav-link" href="/Profile">{{username}}</a>
+                            <img src="{{avatar}}" style="width: 30px; height: 30px;" class="rounded-circle">
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link text-danger" href="/logout">Logout</a>
                         </li>
@@ -69,7 +70,7 @@
         {{{body}}}
     </main>
     <footer>
-        <div class="container-fluid bg-dark text-white ">
+        <div class="container-fluid bg-dark text-white fixed-bottom ">
             <div class="row">
                 <p class="text-center m-auto pt-3 pb-3">Designed and Developed By AttainU</p>
             </div>

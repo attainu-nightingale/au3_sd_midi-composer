@@ -19,7 +19,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
-
+    <script src="/js/login.js"></script>
     <title>Musify | Login</title>
 
 
@@ -62,7 +62,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-lg-6 login-col">
-                        <form action="/login" method="POST">
+                        <form id="loginForm" action="/login" method="POST">
                             <div class="login-box">
                                 <h1>Login</h1>
                                 <div class="textbox">
@@ -76,6 +76,8 @@
                                 </div>
 
                                 <button type="submit" class="sub-btn btn btn-outline-success">Sign In</button>
+                                <div id='alertFail'></div>
+
                                 <a class="text-white" href="">forgot password</a>
 
                                 <p>

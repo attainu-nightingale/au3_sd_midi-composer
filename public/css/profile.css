@@ -1,0 +1,48 @@
+.mainContainer {
+    height: 100vh;
+}
+
+.box2 {
+    width: 65%;
+    height: 100%;
+    color: white;
+    margin-left: 12%;
+    font-size: 0.8rem
+}
+
+.box1 h1 {
+    color: white;
+    float: left;
+    font-size: 2.5em;
+    border-bottom: 0.2em solid #4caf50;
+    margin-bottom: 1em;
+    padding: 0.5em 0 0.5em 0em;
+}
+
+.textbox {
+    width: 100%;
+    font-size: 1em;
+    overflow: hidden;
+    padding: 0.8em 0.1em;
+    border-bottom: 0.2em solid #4caf50;
+}
+
+.textbox i {
+    width: 2em;
+    text-align: center;
+}
+
+.textbox label {
+    font-size: 1.8em;
+}
+
+.textbox input {
+    border: none;
+    outline: none;
+    background: none;
+    color: white;
+    font-size: 1.5em;
+    width: 80%;
+    float: left;
+    margin: 0.2em;
+}

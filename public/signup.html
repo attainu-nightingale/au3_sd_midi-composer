@@ -19,7 +19,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
-
+    <script src="/js/signup.js"></script>
     <title>Musify | SignUp</title>
 
 
@@ -58,7 +58,7 @@
 
         <div class="view"
             style="background-image: url('https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/1e8852ae-f094-4c8f-a2ef-71fe2e705d6d/web-midi-api-image1.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
-            <form action="/signup" method="POST">
+            <form action="/signup" enctype="multipart/form-data" method="POST">
                 <div class="container" id="signup-box">
                     <div class="row">
                         <h1>Sign Up</h1>
@@ -76,10 +76,15 @@
                                     <i class="far fa-address-card"></i>
                                     <input type="text" placeholder="lastname" name="lastname" required />
                                 </div>
+                                <div class="textbox">
+                                    <label>Upload Profile Avatar</label>
+                                    <i class="far fa-address-card"></i>
+                                    <input type="file" placeholder="Upload Profile Avatar" name="image" />
+                                </div>
                                 <div class="textbox ">
                                     <label>Gender</label>
                                     <i class="fas fa-venus-mars"></i>
-                                    <select id="gender" class="form-control mb-3" name="gender">
+                                    <select id="gender" class="form-control-sm mb-3" name="gender" required>
                                         <option>Male</option>
                                         <option>Female</option>
                                     </select>
@@ -89,6 +94,8 @@
                                     <i class="fas fa-envelope-open-text"></i>
                                     <input type="email" placeholder="Email" name="email" required />
                                 </div>
+
+
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12" id="formCol2">
@@ -101,13 +108,15 @@
                                 <div class="textbox">
                                     <label>Password</label>
                                     <i class="fas fa-lock"></i>
-                                    <input type="password" placeholder="Password" name="password" required />
+                                    <input id="password" type="password" placeholder="Password" name="password"
+                                        required />
                                 </div>
                                 <div class="textbox">
                                     <label>Confirm Password</label>
                                     <i class="fas fa-key"></i>
-                                    <input type="password" placeholder="confirm password" name="confirm-password"
-                                        required />
+                                    <input id="confirmPassword" onkeyup="comp(event)" type="password"
+                                        placeholder="confirm password" name="confirm-password" required />
+                                    <div id="alertTool"></div>
                                 </div>
 
                                 <button type="submit" class="sub-btn btn btn-outline-success">Regitster</button>
