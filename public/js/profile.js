@@ -20,7 +20,6 @@ var edit = function (event) {
             }
         })
     })
-
 }
 
 // var obj = {

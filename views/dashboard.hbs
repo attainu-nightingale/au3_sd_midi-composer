@@ -1,6 +1,6 @@
 <div class="container-fluid ml-0">
     <div class="row">
-        <div class="col-md-12 col-lg-3 col-sm-12 bg-dark h-100" style="position: fixed;">
+        <div id="playerCol" class="col-md-12 col-lg-3 col-sm-12 bg-dark" style="position: fixed;">
             <div class="card rounded">
                 <div class='music-card'>
                     <img id="playerAlbumArt" class='rounded-top image'
@@ -18,7 +18,7 @@
         </div>
     </div>
     <div id="leftPane" class="col-sm-12 col-lg-9 col-md-12 mt-3 mb-5">
-        <a href="/dashboard/explore" class="btn btn-outline-success btn-sm px-5 py-2  mb-3">Explore > </a>
+        <a id="explore" href="/dashboard/explore" class="btn btn-outline-success btn-sm px-5 py-2  mb-3">Explore > </a>
         <div class="card-columns">
             {{#each data}}
             <div class="card" id="songCard">

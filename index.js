@@ -53,7 +53,7 @@ app.use(bodyParser.urlencoded({
 
 //Database
 var MongoClient = require('mongodb').MongoClient;
-var url = process.env.MONGODB_STRING;
+var url = 'mongodb://127.0.0.1:27017';
 var DbName = 'musify';
 var db;
 
@@ -101,18 +101,23 @@ app.get('/logout', (req, res) => {
 ////////////////////////////////////////////////////
 //////////////////   Signup  ///////////////////////
 ////////////////////////////////////////////////////
+
 app.post('/signup', multerUploads, (req, res) => {
     var userUpload_avatarUrl
+    var public_id;
     if (req.file) {
         var file = dataUri(req).content;
         return cloudinary.uploader.upload(file).then((result) => {
-            userUpload_avatarUrl = result.url;
+            userUpload_avatarUrl = result.url
+            public_id = result.public_id
+                ;
             var obj = {
                 "firstname": req.body.firstname,
                 "lastname": req.body.lastname,
                 "gender": req.body.gender,
                 "email": req.body.email,
                 "avatar": userUpload_avatarUrl,
+                "public_id": public_id,
                 "username": req.body.username,
                 "password": req.body.password
             }
@@ -141,7 +146,7 @@ app.post('/login', (req, res) => {
             req.session.loggedIn = true;
             req.session.userid = data[0]._id;
             req.session.username = data[0].username;
-            req.session.avatar = data[0].avatar;
+            req.session.public_id = data[0].public_id;
             res.redirect("/dashboard");
         }
         else res.redirect("/login")
@@ -165,7 +170,8 @@ app.get('/dashboard', (req, res) => {
                 script: '/js/dashboard.js',
                 data: data,
                 username: req.session.username,
-                avatar: req.session.avatar
+                avatar: 'http://res.cloudinary.com/degnified/image/upload/w_300,h_300,c_thumb,g_face/' + req.session.public_id + '.jpg',
+                avatar_thumb: 'http://res.cloudinary.com/degnified/image/upload/w_100,h_100,c_thumb,g_face/' + req.session.public_id + '.jpg'
             })
         })
     } else {
@@ -187,7 +193,8 @@ app.get('/dashboard/explore', (req, res) => {
                 script: '/js/dashboard.js',
                 data: data,
                 username: req.session.username,
-                avatar: req.session.avatar
+                avatar: 'http://res.cloudinary.com/degnified/image/upload/w_300,h_300,c_thumb,g_face/' + req.session.public_id + '.jpg',
+                avatar_thumb: 'http://res.cloudinary.com/degnified/image/upload/w_100,h_100,c_thumb,g_face/' + req.session.public_id + '.jpg'
             })
         })
     } else {
@@ -202,6 +209,7 @@ app.get('/dashboard/albumArt/', (req, res) => {
         db.collection('creations').find({
             url: req.query.url
         }).toArray(function (err, data) {
+            console.log(data)
             if (err) throw err;
             res.json(data)
         })
@@ -227,7 +235,8 @@ app.get('/profile', (req, res) => {
                 script: '/js/profile.js',
                 data: data[0],
                 username: req.session.username,
-                avatar: req.session.avatar,
+                avatar: 'http://res.cloudinary.com/degnified/image/upload/w_300,h_300,c_thumb,g_face/' + req.session.public_id + '.jpg',
+                avatar_thumb: 'http://res.cloudinary.com/degnified/image/upload/w_100,h_100,c_thumb,g_face/' + req.session.public_id + '.jpg'
             })
         })
     } else {
@@ -235,8 +244,10 @@ app.get('/profile', (req, res) => {
     }
 })
 
+//profile update
+
 app.put('/profile/update', (req, res) => {
-    db.collection('users').find({ _id: ObjectId(req.session.userid) }).toArray(function (err, data) {
+    if (req.session.loggedIn == true) {
         db.collection('users').findOneAndUpdate(
             { _id: ObjectId(req.session.userid) },
             {
@@ -249,8 +260,46 @@ app.put('/profile/update', (req, res) => {
                 }
             }
         )
-    })
+    }
+    else {
+        res.redirect('/login')
+    }
 })
+
+//avatar update
+
+app.post('/profile/update/avatar', multerUploads, (req, res) => {
+    if (req.session.loggedIn == true) {
+        db.collection('users').find({ _id: ObjectId(req.session.userid) }).toArray(function (error, data) {
+            if (error) throw error
+            cloudinary.uploader.destroy(data[0].public_id, function (result) {
+                console.log(result)
+                var userUpload_avatarUrl
+                var public_id
+                if (req.file) {
+                    var file = dataUri(req).content;
+                    return cloudinary.uploader.upload(file).then((result) => {
+                        userUpload_avatarUrl = result.url;
+                        public_id = result.public_id
+                        db.collection('users').findOneAndUpdate(
+                            { _id: ObjectId(req.session.userid) },
+                            {
+                                $set: {
+                                    "avatar": userUpload_avatarUrl,
+                                    "public_id": public_id
+                                }
+                            }
+                        )
+                    })
+                }
+            });
+        })
+    }
+    else {
+        res.redirect('/login')
+    }
+})
+
 ////////////////////////////////////////////////
 ///////////// composer routes //////////////////
 ////////////////////////////////////////////////

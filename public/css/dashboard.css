@@ -96,3 +96,54 @@ audio:focus {
     font-size: 0.8rem;
     font-family: 'Lobster', cursive;
 }
+
+@media (min-width: 320px) and (max-width: 575px) {
+    #playerCol {
+        top: -60vh;
+        z-index: 1;
+    }
+
+    html {
+        margin-top: 10vh;
+    }
+
+    #leftPane {
+        width: 100vw;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    #songCard {
+        width: 85vw;
+    }
+
+}
+
+
+@media (min-width: 576px) and (max-width: 990px) {
+    #playerCol {
+        top: -60%;
+        z-index: 1;
+    }
+
+    html {
+        margin-top: 12vh;
+    }
+
+    #leftPane {
+        width: 100vw;
+        margin: 10px;
+        padding: 10px;
+
+    }
+
+    #songCard {
+        width: 100%;
+    }
+}
+
+@media (min-width: 991px) and (max-width: 1366px) {
+    #songCard {
+        width: 100%;
+    }
+}
