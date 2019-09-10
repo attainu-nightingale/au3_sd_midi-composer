@@ -1,0 +1,196 @@
+*{
+    box-sizing: border-box;
+}
+
+.wrapper{
+    display:grid;
+    grid-template-columns: 1fr 4fr;
+    column-gap: 1em;
+    grid-template-areas: "sidebar main"
+                         "sidebar footer"
+}
+
+.left-sidebar{
+    grid-area: sidebar;
+    background: #06beb6;
+    background: -webkit-linear-gradient(to bottom, #48b1bf, #06beb6); 
+    background: linear-gradient(to bottom, #48b1bf, #06beb6); 
+}
+
+.main-section{
+    grid-area: main;
+    margin-top:45px;
+    display:grid;
+    grid-template-rows: 60px 3fr 1fr;
+    grid-template-columns: 1fr 2fr;    
+    grid-template-areas: "player"
+                         "mat"
+                         "btns";
+}
+
+#control-area{
+    grid-area: player;
+    /* background: #02AAB0; 
+    background: -webkit-linear-gradient(to right, #00CDAC, #02AAB0);
+    background: linear-gradient(to right, #00CDAC, #02AAB0); */
+    background: #2193b0;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+}
+
+.mat-area{
+    grid-area: mat;
+}
+
+.button-area{
+    grid-area: btns;
+    text-align: center;
+}
+
+/*ctrl section*/
+.ctrl{
+    padding:10px;
+}
+/*player buttons*/
+.ctrl button{
+    margin-left:20px;
+    padding:5px;
+    border:none;
+}
+
+.ctrl button:nth-child(1) i{
+    width: 12px !important;
+    height: 12px !important;
+}
+
+/*play button */
+.ctrl button:nth-child(1){
+    border-radius: 50%;
+    width:30px;
+    background-color: #16a8f0;
+    border:1px solid white;
+    color:white !important;
+}
+
+/*Stop button*/
+#stop-button{
+    border-radius: 50%;
+    width:30px;
+    background-color:tomato;
+    border:1px solid white;
+    color:white ;
+}
+
+
+/*Download button black*/
+#download-button {
+    border:none;
+}
+
+#download-beat {
+    margin-left:20px;
+    padding:5px;
+    border:none;
+    width:30px;
+}
+
+.ctrl button:focus{
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/*Tempo*/
+#tempo-text{
+    color:white;
+    padding-left:20px;
+    padding-right: 12px;
+}
+
+/*Slider*/
+.my-slider {
+-webkit-appearance: none;
+width: 50%;
+background:white;
+outline: none;
+opacity: 0.7;
+-webkit-transition: .2s;
+transition: opacity 1s;
+}
+
+.my-slider:hover {
+opacity: 0.9;
+}
+
+.my-slider::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 25px;
+height: 15px;
+background:rgba(10, 233, 203, 0.925);
+cursor: pointer;
+}
+
+.my-slider::-moz-range-thumb {
+width: 25px;
+height: 25px;
+background:rgba(10, 233, 203, 0.925);
+cursor: pointer;
+}
+
+
+/*Row labels*/
+#note-text{
+    text-align: right;
+    margin: 0;
+    padding: 0;
+    line-height:50px; 
+}
+
+/*Delete Button*/
+.delete-button{
+    padding:10px;
+    font-size:24px;
+    margin-left:15px;
+}
+
+/*new button*/
+#new-button{
+    width:100%;
+    background:none;
+    border:none;
+    border-bottom: 2px solid white;
+}
+
+/*MODAL*/
+#add-button{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border: none;
+    padding:10px;
+    font-size:24px;
+}
+
+.modal-backdrop
+{
+    opacity:0.4 !important;
+}
+button.close{
+    background-color:red !important;
+    color: white !important
+}
+.modal-title{
+    line-height:1 !important;
+}
+
+/*li-item*/
+.li-item{
+    cursor: pointer;
+    font-size:24px;
+    text-align: center;
+    color:white;
+    background-color: none;
+    border-bottom:2px solid white;
+}
+.li-item:hover{
+    background-color:white !important;
+    color:#40e0d0 !important;
+}
