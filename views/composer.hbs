@@ -1,0 +1,61 @@
+<div class="conatiner-fluid wrapper">
+    <div class="left-sidebar">
+        <button id="new-button"><h2>Composer</h2></button>
+        <ul>
+            {{#each creation}}
+                <li id={{this._id}} class='li-item'>{{this.title}}</li>        
+            {{/each}}
+        </ul>
+    </div>
+
+    <div class="main-section">
+        <div id="control-area">                
+            <div class="ctrl">
+                <button id="play-pause-button">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button id="stop-button">
+                    <i class="fas fa-stop"></i>
+                </button>
+                <button id="download-button">
+                    <i class='fa fa-download'></i>
+                </button>
+                <span id="tempo-text">Tempo : <span id="bpm-text">120</span>bpm</span>
+                <input id="bpm" type="range" min="10" max="300" step="1" value="120" name="bpm" class="my-slider"/>
+            </div>
+        </div>
+        <div id="grid" class="mat-area">
+        </div>
+        <div class="button-area">
+            <button id="add-button" type="button" class="btn btn-primary blue-gradient mt-5" data-toggle="modal">Add</button>
+        </div>            
+    </div>
+</div>
+
+<div class="modal fade" id="addModal">
+<div class="modal-dialog  modal-dialog-centered">
+<div class="modal-content">            
+<!-- Modal Header -->
+    <div class="modal-header">
+        <h4 class="modal-title text-center">Add Creation</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>            
+    <!-- Modal body -->
+    <div class="modal-body">
+        <form>
+            <input class="form-control mb-4" type="text" name="title" placeholder="Enter title" id="title"  pattern=".{3,}"   required title="Enter minimum 3 characters to save"/>
+            <div class="onoffswitch">
+                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch">
+                <label class="onoffswitch-label" for="myonoffswitch">
+                    <span class="onoffswitch-inner"></span>
+                    <span class="onoffswitch-switch"></span>
+                </label>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary save-button mx-auto">Save</button> 
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>

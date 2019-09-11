@@ -136,11 +136,13 @@ app.post('/signup', multerUploads, (req, res) => {
 
 app.post('/login', (req, res) => {
     var flag = false;
-    db.collection('users').find({ username: req.body.username }).toArray(function (err, data) {
-        if (err) throw error
 
+    db.collection('users').find({username: req.body.username}).toArray(function (err, data) {
+        if (err) 
+            throw err;
         if (req.body.username == data[0].username && req.body.password == data[0].password) {
             flag = true;
+            req.session.userid = data[0]._id;
         }
         if (flag) {
             req.session.loggedIn = true;
@@ -160,6 +162,9 @@ app.post('/login', (req, res) => {
 //get route for creation
 app.get('/dashboard', (req, res) => {
     if (req.session.loggedIn == true) {
+
+        console.log(req.session.userid);
+        console.log(req.session.username)
         db.collection('creations').find({
             userid: req.session.userid
         }).toArray(function (err, data) {
@@ -222,7 +227,6 @@ app.get('/dashboard/albumArt/', (req, res) => {
 ////////////////////////////////////////////////
 ////////////////// Profile /////////////////////
 ////////////////////////////////////////////////
-
 app.get('/profile', (req, res) => {
     if (req.session.loggedIn == true) {
         db.collection('users').find({
@@ -303,15 +307,88 @@ app.post('/profile/update/avatar', multerUploads, (req, res) => {
 ////////////////////////////////////////////////
 ///////////// composer routes //////////////////
 ////////////////////////////////////////////////
-//delete route
-app.delete('/creations/delete/:id', (req, res) => {
+
+  /*Composer Route*/
+  app.get('/composer', (req, res) => {
     if (req.session.loggedIn == true) {
-        db.collection('creations').deleteOne({
-            _id: ObjectId(req.params.id)
-        }, function (err, data) {
-            if (err) throw err
-        })
-    } else {
-        res.redirect('/login')
+        db.collection('creations').find({userid: req.session.userid}).toArray(function (err, data) {
+            if (err) 
+                throw err;
+            res.render('composer.hbs', {
+                title: "MusiFy | Composer",
+                style: '/css/composer.css',
+                script: '/js/composer.js',
+                creation: data,
+            });
+        });
     }
-})
+    else
+        res.redirect('/login')
+});
+
+/*Add Composer*/
+app.post('/composer/add', function(req, res){
+    const title = req.body.title;
+    const beats = req.body.beats;
+    const bpm = req.body.bpm;
+    const privacy = req.body.privacy;
+    const userid = req.session.userid;
+    const link = req.body.link;
+
+    if(req.session.loggedIn)
+    {
+        db.collection('creations').insertOne({title:title, beats:beats, bpm:bpm, privacy:privacy, base64data:link, userid:userid}, function(error, result){
+            if(error)
+                throw error;
+            else       
+                res.send("Composer Added");
+        });
+    }
+  })
+    else    
+        res.redirect('/login');
+});
+/* Search Composer for edit */
+app.get('/composer/search', function(req, res){
+    const cid = req.query.id;
+    if(req.session.loggedIn){
+        db.collection('creations').find({'_id':ObjectID(cid)}).toArray(function (err, result){
+            if(err)
+                throw err;
+            res.json(result);
+        });
+    }
+    else
+        res.redirect('/login');
+});
+
+/*Edit Composer */
+app.put('/composer/update', function(req, res){
+    const cid = req.query.id;
+    const title = req.body.title;
+    const beats = req.body.beats;
+    const bpm = req.body.bpm;
+    const privacy = req.body.privacy;
+    const link = req.body.link;
+
+    db.collection('creations').updateOne({'_id':ObjectID(cid)}, {$set: {'title': title, 'beats':beats, 'bpm':bpm, 'privacy':privacy, 'base64data':link,} }, function(error, result){
+        if(error)
+            throw error;
+        else
+            res.send("Composer Updated");
+    });
+});
+
+/* Delete Composer */
+app.delete('/composer/delete', function(req,res) {
+    if (req.session.loggedIn == true) {
+        const cid = req.query.id;
+        db.collection('creations').deleteOne({_id: ObjectId(cid)}, function (err, data) {
+            if (err) 
+                throw err;
+            res.send("Deleted");
+        });
+    } 
+    else
+        res.redirect('/login')
+});
