@@ -1,0 +1,72 @@
+<div class="container-fluid mainContainer  bg-dark">
+    <div class="row  mb-5">
+        <div id="avatarCol" class="col-lg-4 col-sm-12 col-md-12">
+            <div class="row mt-5 d-flex align-items-center justify-content-center">
+                <img src="{{avatar}}" class="rounded-circle w-25 h-25">
+            </div>
+            <div class="row  ">
+                <form class="ml-auto mt-5 mr-auto w-75" action="/profile/update/avatar" enctype="multipart/form-data"
+                    method="POST">
+                    <div class="textbox w-100">
+                        <label id="uploadlabel">Update Profile Avatar</label>
+                        <i class="fas fa-user-tie text-white"></i>
+                        <input type="file" placeholder="Upload Profile Avatar" name="image" />
+                        <button type="submit" class="sub-btn btn btn-success">upload</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-8 col-sm-12 col-md-12">
+            <div class="container bg-dark box1">
+                <div class="row d-flex">
+                    <h1>Welcome, {{data.firstname}} {{data.lastname}}</h1>
+                    <button id="editProfile" onclick="edit(event)"
+                        class="btn btn-sm btn-outline-warning px-3 py-1 ml-auto mt-4 h-25">Edit</button>
+                </div>
+            </div>
+            <div class="row bg-dark" id="formSections">
+                <div class="col bg-dark">
+                    <div class="box2 bg-dark">
+                        <form>
+                            <div class="textbox">
+                                <label>First Name</label>
+                                <i class="fas fa-user"></i>
+                                <input id="firstname" type="text" placeholder="firstname" name="firstname"
+                                    value="{{data.firstname}}" disabled />
+                            </div>
+                            <div class="textbox">
+                                <label>Last Name</label>
+                                <i class="far fa-address-card"></i>
+                                <input id="lastname" type="text" placeholder="lastname" name="lastname"
+                                    value="{{data.lastname}}" disabled />
+                            </div>
+                            <div class="textbox ">
+                                <label>Gender</label>
+                                <i class="fas fa-venus-mars"></i>
+                                <select id="gender" class="form-control-sm mb-3" name="gender" value="{{data.gender}}"
+                                    disabled>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                            </div>
+                            <div class="textbox">
+                                <label>Email</label>
+                                <i class="fas fa-envelope-open-text"></i>
+                                <input id="email" type="email" placeholder="Email" value="{{data.email}}" name="email"
+                                    disabled />
+                            </div>
+                            <div class="textbox">
+                                <label>Username</label>
+                                <i class="fas fa-at"></i>
+                                <input id="username" type="text" placeholder="Username" name="username"
+                                    value="{{data.username}}" disabled />
+                            </div>
+                            <div id="saveButton" class="d-flex"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

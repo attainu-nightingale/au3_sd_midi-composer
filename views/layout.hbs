@@ -17,7 +17,7 @@
     <title>{{title}}</title>
 </head>
 
-<body>
+<body class="bg-dark">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top scrolling-navbar" id="navbar">
             <div class="container-fluid mx-5 my-1 " id="navBox">
@@ -39,13 +39,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/composer">Composer</a>
                         </li>
+                        <li class="nav-item d-flex align-items-center mr-1">
+                            <a class="nav-link" href="/Profile">{{username}}<img src="{{avatar}}"
+                                    style="width: 30px; height: 30px;" class="rounded-circle"></a>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Profile">Profile</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/help">Help</a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link text-danger" href="/logout">Logout</a>
                         </li>
@@ -54,11 +53,11 @@
             </div>
         </nav>
     </header>
-    <main id="content-wrapper">
+    <main id="content-wrapper" class="bg-dark">
         {{{body}}}
     </main>
     <footer>
-        <div class="container-fluid bg-dark text-white ">
+        <div class="container-fluid bg-dark text-white fixed-bottom ">
             <div class="row">
                 <p class="text-center m-auto pt-3 pb-3">Designed and Developed By AttainU</p>
             </div>
