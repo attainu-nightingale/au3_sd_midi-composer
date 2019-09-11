@@ -9,12 +9,16 @@ var rec=false;
 var flag= false;
 var edit = false;
 var sequencer;
-var fileReader = new this.FileReader();
 var liCss;
+var link;
+var blob;
+var base64data;
 
 $('.save-button').removeAttr('id');
 $('.delete-button').remove();
 $("#title").val('');
+$('.modal-title').text('Add Creation');
+$('.onoffswitch-checkbox').prop('checked', false);
 
 $("#new-button").on("click",function(){
     window.location.replace('/composer');
@@ -48,7 +52,7 @@ window.onload= function(){
     });
 
     /*Stop button*/
-    $("#stop-button").on('click',function(){
+    $("#stop-button").off().on('click',function(){
         if(pause==true){
             $("#play-pause-button").empty();
             $("#play-pause-button").append("<i class='fas fa-play'><i>")
@@ -74,11 +78,19 @@ window.onload= function(){
     /*SAVE BUTTON */
     $(".save-button").on('click',function(){
         var isvalidate = $("form")[0].checkValidity();
-        if (isvalidate) {
+        if(isvalidate) {
             event.preventDefault();
+            if(pause==true){
+                $("#play-pause-button").empty();
+                $("#play-pause-button").append("<i class='fas fa-play'><i>");
+                pause=false;
+                Tone.Transport.stop();
+            }
+
             let beats = new Array(sequencer.rows);
             let bpm = $('#bpm').val();
             const title = $("#title").val();
+            let privacy = $('.onoffswitch-checkbox').is(":checked");
             for(let i=0;i<sequencer.columns;i++)
                 beats[i]=[];
             for(let i=0;i<sequencer.rows;i++){
@@ -88,13 +100,16 @@ window.onload= function(){
                     else
                         beats[i][j]=1;
                 }
-            }
-            console.log("going in ajax");
+            }                   
+            
             var data = {
                 title: title,
                 beats: beats,
-                bpm:bpm
+                bpm:bpm,
+                privacy:privacy,
+                link:base64data
             }
+     
             if(edit==false){
                 $.ajax({
                     url:'/composer/add',
@@ -104,11 +119,11 @@ window.onload= function(){
                     data: JSON.stringify(data),
                     success: function(msg){ 
                         $('#myModal').modal('hide');
-                        console.log("saved");
                         window.location.replace('/composer');
                     }
                 });
             }
+
             else{
                 const cid= $(this).attr('id');
                 $.ajax({
@@ -119,13 +134,12 @@ window.onload= function(){
                     data: JSON.stringify(data),
                     success: function(msg){ 
                         $('#myModal').modal('hide');
-                        console.log("updated");
                         edit=false;
                         window.location.replace('/composer');
                     }
                 });
             }
-        }
+        }   
     });
 
     document.getElementById('bpm').addEventListener('input', e => {
@@ -194,7 +208,7 @@ window.onload= function(){
             Tone.Transport.stop();
             Tone.Transport.start();
             $("#download-button").empty();
-            $("#download-button").append("Link is getting ready...");
+            $("#download-button").append("Link...");
             for(let j=0;j<16;j++){
                 if(index%16==0)
                     break;
@@ -212,26 +226,22 @@ window.onload= function(){
 
 
     recorder.ondataavailable = evt => chunks.push(evt.data);
-
     recorder.onstop = evt => {
-        let blob = new Blob(chunks, { type: 'audio/mpeg' });
+        blob = new Blob(chunks, { type: 'audio/mpeg' });
+        link = URL.createObjectURL(blob);
+
+        var reader = new FileReader();
+        reader.readAsDataURL(blob); 
+        reader.onloadend = function() {
+            base64data = reader.result;                
+        }
+
         $('#download-button').after("<a id='download-beat' href="+ URL.createObjectURL(blob)+" download='musify'><i class='fa fa-download'></i></a>");
         $("#download-button").remove();
-        fileReader.onload = function(event){
-            console.log("ArrayBuffer");
-            var arrayBuffer = fileReader.result;
-            console.log(arrayBuffer);
-            var bytes = new Uint8Array(arrayBuffer);
-            console.log(bytes);
-        }
-        console.log("FileReader");
-        fileReader.readAsArrayBuffer(blob);
-        console.log(fileReader);
     };
 
     $('body').on('click','#download-beat',function () {
-        console.log(this);
-        $(event.target).remove(); 
+        $("#download-beat").remove(); 
         $("#stop-button").after("<button id='download-button'><i class='fa fa-download'></i></button>");
     });
 
@@ -240,9 +250,9 @@ window.onload= function(){
         $('.save-button').removeAttr('id');
         $('#'+liCss).css({'color':'white','background-color':''});
         liCss = $(event.target).attr('id');
-        console.log(liCss);
+        $('.modal-title').text('Update Creation');        
         $(event.target).css({'color':'#40e0d0','background-color':'white'});
-        const cid = $(event.target).attr('id');
+        const cid = $(event.target).attr('id');   
         $(".save-button").attr('id',cid);
         $(".button-area").append("<button type='button' class='btn btn-danger blue-gradient mt-5 delete-button'>Delete</button>")
         $(".delete-button").attr('id',cid);
@@ -254,6 +264,7 @@ window.onload= function(){
             success: function(data){
                 Tone.Transport.bpm.value = data[0].bpm;
                 $('#bpm-text').text(data[0].bpm);
+                $('.onoffswitch-checkbox').prop('checked', data[0].privacy);
                 edit = true;
                 if(pause==true){
                     $("#play-pause-button").empty();
@@ -272,9 +283,9 @@ window.onload= function(){
                 flag=false;
                 index=0;
                 Tone.Transport.stop();
-
-                $("#download-button").empty();
-                $("#download-button").append("<i class='fas fa-download'></i>");        
+                $('#download-beat').remove();
+                $("#download-button").remove();
+                $("#stop-button").after("<button id='download-button'><i class='fas fa-download'></i></button>");        
                 $("#add-button").text('Update');    
                 $("#title").val(data[0].title);
                 for(let i=0;i<5;i++){
@@ -296,7 +307,6 @@ window.onload= function(){
                 url:'/composer/delete?id='+cid,
                 type:'delete',
                 success: function(data){
-                    console.log(data);
                     edit = false;
                     window.location.replace('/composer');
                 }
@@ -314,8 +324,33 @@ window.onload= function(){
             }
         }
     }
-    
-}
 
-/*rows x[0].beats.length */
-//col x[0].beats[0].length 
+    $('#add-button').on('click',function(){
+        if(pause==true){
+            $("#play-pause-button").empty();
+            $("#play-pause-button").append("<i class='fas fa-play'><i>");
+            pause=false;
+            Tone.Transport.stop();
+        }
+    
+        if(rec==false){
+            Tone.Transport.stop();
+            Tone.Transport.start();
+            $("#download-button").empty();
+            $("#download-button").append("Link...");
+            for(let j=0;j<16;j++){
+                if(index%16==0)
+                    break;
+                sequencer.next();
+                index++;
+            }
+            rec=true;
+            flag=false;
+            counter=0;
+            index=0;
+            Tone.Transport.stop();
+            Tone.Transport.start();
+        }
+        $('#addModal').modal('show');    
+    });        
+}
