@@ -12,17 +12,21 @@ font-family: 'Poppins', sans-serif; */
 
 body {
     font-family: 'Poppins', sans-serif;
+    background: #232222;
 }
 
 #navbar {
     height: 10vh;
     width: 100%;
-    background: rgba(0, 0, 0, 0.6)
+    background: #0f0e0e;
 }
 
 .brandName {
     font-family: 'Lobster', cursive;
-    font-size: 2rem
+    font-size: 2rem;
+    background: linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 
@@ -49,4 +53,15 @@ body {
 
 #content-wrapper {
     margin-top: 10vh;
+}
+
+footer{
+    background: #0f0e0e;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+}
+ul.navList a:hover { 
+    color: #11fbef !important; 
+    font-size: 1.2rem;
 }

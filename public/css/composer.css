@@ -12,9 +12,8 @@
 
 .left-sidebar{
     grid-area: sidebar;
-    background: #06beb6;
-    background: -webkit-linear-gradient(to bottom, #48b1bf, #06beb6); 
-    background: linear-gradient(to bottom, #48b1bf, #06beb6); 
+    font-family: impact;
+    background: linear-gradient(to right, #1fa2ff, #12d8fa, #12fff7);
 }
 
 .main-section{
