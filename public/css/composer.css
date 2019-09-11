@@ -2,44 +2,50 @@
     box-sizing: border-box;
 }
 
+
 .wrapper{
     display:grid;
     grid-template-columns: 1fr 4fr;
-    column-gap: 1em;
-    grid-template-areas: "sidebar main"
-                         "sidebar footer"
+    grid-template-rows: auto 50px;
+    grid-template-areas: "sidebar main-area"
+                          "sidebar footer"
 }
 
 .left-sidebar{
     grid-area: sidebar;
-    background: #06beb6;
-    background: -webkit-linear-gradient(to bottom, #48b1bf, #06beb6); 
-    background: linear-gradient(to bottom, #48b1bf, #06beb6); 
 }
 
+/*main*/
 .main-section{
-    grid-area: main;
-    margin-top:45px;
+    grid-area: main-area;
+    margin-top:40px;
+    margin-left: 190px;
     display:grid;
-    grid-template-rows: 60px 3fr 1fr;
+    grid-template-rows: 60px 1fr 1fr;
     grid-template-columns: 1fr 2fr;    
     grid-template-areas: "player"
                          "mat"
                          "btns";
 }
 
+/*Footer area*/
+.footer-area {
+    grid-area: footer;
+    color: white;
+    text-align: center;
+    overflow: hidden; 
+    left: 0;
+    bottom: 0;
+    width:100%;
+}
+
 #control-area{
     grid-area: player;
-    /* background: #02AAB0; 
-    background: -webkit-linear-gradient(to right, #00CDAC, #02AAB0);
-    background: linear-gradient(to right, #00CDAC, #02AAB0); */
-    background: #2193b0;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
 }
 
 .mat-area{
     grid-area: mat;
+    background: white !important;
 }
 
 .button-area{
@@ -49,7 +55,7 @@
 
 /*ctrl section*/
 .ctrl{
-    padding:10px;
+    margin-top:13px;
 }
 /*player buttons*/
 .ctrl button{
@@ -67,31 +73,39 @@
 .ctrl button:nth-child(1){
     border-radius: 50%;
     width:30px;
-    background-color: #16a8f0;
-    border:1px solid white;
+    background: linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb);
     color:white !important;
 }
+#play-pause-button>i,#stop-button>i{
+    overflow: visible !important;
 
+}
 /*Stop button*/
 #stop-button{
+    overflow: visible !important;
     border-radius: 50%;
     width:30px;
     background-color:tomato;
-    border:1px solid white;
     color:white ;
 }
-
 
 /*Download button black*/
 #download-button {
     border:none;
+    color:white;
+    background: none;
+}
+
+#download-button > i{
+    border:none;
+    color:white;
+    font-size:20px;
+    background: none;
 }
 
 #download-beat {
     margin-left:20px;
-    padding:5px;
     border:none;
-    width:30px;
 }
 
 .ctrl button:focus{
@@ -118,7 +132,7 @@ transition: opacity 1s;
 }
 
 .my-slider:hover {
-opacity: 0.9;
+opacity: 1;
 }
 
 .my-slider::-webkit-slider-thumb {
@@ -126,14 +140,14 @@ opacity: 0.9;
 appearance: none;
 width: 25px;
 height: 15px;
-background:rgba(10, 233, 203, 0.925);
+background-color:#40e0d0;
 cursor: pointer;
 }
 
 .my-slider::-moz-range-thumb {
 width: 25px;
 height: 25px;
-background:rgba(10, 233, 203, 0.925);
+background-color:#40e0d0;
 cursor: pointer;
 }
 
@@ -158,12 +172,18 @@ cursor: pointer;
     width:100%;
     background:none;
     border:none;
-    border-bottom: 2px solid white;
+    color:white;
+    margin-top:5px;
+    padding:5px;
+    border-bottom: 5px solid white;
+}
+
+#new-button:hover{
+    background: linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb);
 }
 
 /*MODAL*/
 #add-button{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     border: none;
     padding:10px;
     font-size:24px;
@@ -184,7 +204,8 @@ button.close{
 /*li-item*/
 .li-item{
     cursor: pointer;
-    font-size:24px;
+    padding:5px;
+    list-style: none;
     text-align: center;
     color:white;
     background-color: none;
