@@ -5,63 +5,59 @@
 font-family: 'Poppins', sans-serif; */
 
 * {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin: 0;
     padding: 0;
+    font-size: 16px;
     box-sizing: border-box;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #232222;
 }
 
-#navbar {
-    height: 10vh;
-    width: 100%;
-    background: #0f0e0e;
+.navbar{
+    padding-top:0;
+    padding-bottom: 0;
+    grid-area: header;
+}
+
+.navbar a{
+    color: white !important;
+}
+
+.navbar-toggler {
+    border-color: grey !important;
+}
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
 }
 
 .brandName {
     font-family: 'Lobster', cursive;
-    font-size: 2rem;
+    font-size: 38px !important;
+    vertical-align: middle !important;
     background: linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb); 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-
-.navList {
-    padding-left: 1.2rem;
+ul.navList a{
+    vertical-align: middle !important;
 }
 
-.navList li {
-    font-size: 1rem;
-    line-height: 2rem;
-}
-
-#navBox {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-#navbarSupportedContent-7 {
-    width: 100%;
-    margin: 0px;
-    padding: 0px;
-}
-
-#content-wrapper {
-    margin-top: 10vh;
-}
-
-footer{
-    background: #0f0e0e;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-}
 ul.navList a:hover { 
     color: #11fbef !important; 
     font-size: 1.2rem;
+}
+
+body{
+    display:grid !important;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "header"
+                         "main";
+}
+
+#content-wrapper{
+    grid-area: main;
 }
