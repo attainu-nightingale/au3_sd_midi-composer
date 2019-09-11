@@ -26,12 +26,14 @@ $("#new-button").on("click",function(){
 
 window.onload= function(){
     sequencer = new Nexus.Sequencer('#grid',{
-    'size': [850,300],
+    'size': [700,250],
     'mode': 'toggle',
     'rows': 5,
     'columns': 16
     });
-    sequencer.colorize("accent","#4DF3CE");
+    // sequencer.colorize('fill','silver');
+    sequencer.colorize("accent","#B2EDE0 ");
+    sequencer.colorize('mediumLight', "black");
     $("#add-button").text('Add');
 
     /* PLAY/PAUSE BUTTON */ 
@@ -150,10 +152,13 @@ window.onload= function(){
     const synths = [
         new Tone.MembraneSynth().toMaster(),
         new Tone.MembraneSynth().toMaster(),
-        new Tone.MembraneSynth().toMaster(),
-        new Tone.MembraneSynth().toMaster(),
-        new Tone.MembraneSynth().toMaster()
+        new Tone.Synth(),
+        new Tone.Synth(),
+        new Tone.Synth()
     ];
+
+    for(let i=2;i<5;i++)
+        synths[i].oscillator.type = 'sine';
 
     const gain = new Tone.Gain(0.5);
     gain.toMaster();
@@ -161,7 +166,7 @@ window.onload= function(){
     synths.forEach(synth => synth.connect(gain));
     synths.forEach(synth => synth.connect(dest));
 
-    notes = ['C1', 'C2', 'C3', 'C4', 'C5'];
+    notes = ['C1', 'C2', 'C4', 'C#4', 'D4'];
 
     Tone.Transport.scheduleRepeat(repeat, "16n");
     Tone.Transport.bpm.value = 120;
