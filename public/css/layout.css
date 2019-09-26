@@ -1,19 +1,12 @@
 @import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
-@import url('https://fonts.googleapis.com/css?family=Lobster|Poppins&display=swap');
-
-/* font-family: 'Lobster', cursive;
-font-family: 'Poppins', sans-serif; */
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono|Ubuntu|Aldrich&display=swap');
 
 * {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Roboto Mono', sans-serif; 
     margin: 0;
     padding: 0;
     font-size: 16px;
     box-sizing: border-box;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
 }
 
 .navbar{
@@ -24,6 +17,7 @@ body {
 
 .navbar a{
     color: white !important;
+    font-family: 'Ubuntu', sans-serif; 
 }
 
 .navbar-toggler {
@@ -34,7 +28,7 @@ body {
 }
 
 .brandName {
-    font-family: 'Lobster', cursive;
+    font-family: 'Aldrich', sans-serif;
     font-size: 38px !important;
     vertical-align: middle !important;
     background: linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb); 
@@ -50,8 +44,13 @@ ul.navList a:hover {
     color: #11fbef !important; 
     font-size: 1.2rem;
 }
+a.active{
+    background: linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
-body{
+.body-wrapper{
     display:grid !important;
     grid-template-rows: auto auto auto;
     grid-template-areas: "header"

@@ -1,9 +1,9 @@
 <div class="conatiner-fluid wrapper">
     <div class="left-sidebar bg-dark">
-        <button id="new-button"><h4>Composer</h4></button>
+        <button id="new-button"><i class="fas fa-plus-circle" style="font-size: 36px"></i></button>
         <ul>
             {{#each creation}}
-                <li id={{this._id}} class='li-item'>{{this.title}}</li>        
+                <li id={{this._id}} class='li-item'><i class="fa fa-music pr-2" aria-hidden="true"></i>{{this.title}}</li>        
             {{/each}}
         </ul>
     </div>
@@ -27,12 +27,12 @@
         <div id="grid" class="mat-area">
         </div>
         <div class="button-area">
-            <button id="add-button" type="button" class="btn btn-primary blue-gradient mt-5" data-toggle="modal">Add</button>
+            <button id="add-button" type="button" class="btn mt-5" data-toggle="modal">Add</button>
         </div>            
     </div>
 
     <div class="footer-area bg-dark">
-        <p>Copyright &copy by Musify | All rights reserved</p>
+        <p>Copyright <span style="font-size:24px">&copy</span> by Musify | All rights reserved</p>
     </div>
 
 </div>

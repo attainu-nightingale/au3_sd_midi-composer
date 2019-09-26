@@ -1,137 +1,58 @@
-@import url("https://fonts.googleapis.com/css?family=Lobster&display=swap");
-@import url('https://fonts.googleapis.com/css?family=Lobster|Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono|Ubuntu|Aldrich&display=swap');
 
-/* font-family: 'Lobster', cursive;
-font-family: 'Poppins', sans-serif; */
-/* Required for full background image */
-
-html,
-body,
-header,
-.view {
-    height: 91vh;
-    font-family: 'Poppins', sans-serif;
+* {
+    font-family: 'Roboto Mono', sans-serif; 
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    box-sizing: border-box;
 }
 
-@media (min-width: 320px) and (max-width : 799px) {
-
-    html,
-    body,
-    header,
-    .view {
-        height: 100vh;
-    }
-
-    #signup-box h1 {
-        font-size: 1rem;
-        margin-top: 0;
-        margin-bottom: 0.5em;
-    }
-
-    #signup-box {
-        display: block;
-    }
-
-    #formCol1 {
-        font-size: 0.7rem;
-    }
-
-    #formCol2 {
-        top: 35vh;
-        font-size: 0.7rem;
-    }
-
-    .sub-btn {
-        font-size: 0.7rem;
-
-    }
-
-    .textbox {
-        width: 100%;
-        font-size: 1em;
-        overflow: hidden;
-        padding: 0.2em 0.1em;
-        border-bottom: 0.1em solid #4caf50;
-    }
-
-    .login-col {
-        margin-left: auto;
-    }
+body {
+    overflow: hidden;
 }
 
-@media (min-width: 800px) and (max-width: 990px) {
 
-    html,
-    body,
-    header,
-    .view {
-        height: 100vh;
-        width: 100%;
-    }
-
-    #signup-box {
-        display: block;
-    }
-
-    #formCol1 {
-        font-size: 0.7rem;
-    }
-
-    #formCol2 {
-        top: 12vh;
-        font-size: 1rem;
-    }
-
-    .login-col {
-        margin-left: auto;
-    }
-
-    .sub-btn {
-        font-size: 0.7rem;
-
-    }
-
-    .textbox {
-        width: 100%;
-        font-size: 1em;
-        overflow: hidden;
-        padding: 0.2em 0.1em;
-        border-bottom: 0.1em solid #4caf50;
-    }
-
-
+.navbar{
+    padding-top:0;
+    padding-bottom: 0;
+    background-color: none !important;
 }
 
-#navbar {
-    background: rgba(0, 0, 0, 0.6)
+.navbar a{
+    font-family: 'Ubuntu', sans-serif; 
+    color: white !important;
 }
 
-#brand {
-    font-family: "Lobster", cursive;
-    font-size: 2rem
+.navbar-toggler {
+    border-color: grey !important;
+}
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
 }
 
-.box-black {
-    background-color: black;
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-    opacity: 0.6;
+.brandName {
+    /* font-family: 'Lobster', cursive; */
+    font-family: 'Aldrich', sans-serif;
+    font-size: 38px !important;
+    vertical-align: middle !important;
+    background: linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-main-carausel {
-    z-index: 100;
-
+ul.navList a{
+    vertical-align: middle !important;
 }
 
-h3 {
-    font-family: "Lobster", cursive;
-    font-size: 5rem;
-    color: white;
-    margin-top: 15rem;
+ul.navList a:hover { 
+    color: #11fbef !important; 
+    font-size: 1.2rem;
 }
 
-footer {
-    background-color: black;
-    height: 9vh;
+#myVideo {
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    max-width: 100%;
 }
