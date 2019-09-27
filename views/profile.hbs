@@ -1,4 +1,4 @@
-<div class="container-fluid mainContainer  bg-dark">
+<div class="container-fluid mainContainer bg-dark">
     <div class="row  mb-5">
         <div id="avatarCol" class="col-lg-4 col-sm-12 col-md-12">
             <div class="row mt-5 d-flex align-items-center justify-content-center">
@@ -11,7 +11,7 @@
                         <label id="uploadlabel">Update Profile Avatar</label>
                         <i class="fas fa-user-tie text-white"></i>
                         <input type="file" placeholder="Upload Profile Avatar" name="image" />
-                        <button type="submit" class="sub-btn btn btn-success">upload</button>
+                        <button type="submit" class="sub-btn btn btn-success mt-2">upload</button>
                     </div>
                 </form>
             </div>
@@ -40,26 +40,22 @@
                                 <input id="lastname" type="text" placeholder="lastname" name="lastname"
                                     value="{{data.lastname}}" disabled />
                             </div>
-                            <div class="textbox ">
+                            <div class="textbox mt-3">
                                 <label>Gender</label>
                                 <i class="fas fa-venus-mars"></i>
-                                <select id="gender" class="form-control-sm mb-3" name="gender" value="{{data.gender}}"
-                                    disabled>
-                                    <option>Male</option>
-                                    <option>Female</option>
+                                <select id="gender" class="form-control-sm" name="gender" disabled>
+                                    {{#if female}}
+                                        <option value={{data.gender}} selected>Female</option>
+                                    {{else}}
+                                        <option value={{data.gender}} selected>Male</option>                                    
+                                    {{/if}}
                                 </select>
                             </div>
-                            <div class="textbox">
+                            <div class="textbox mt-3">
                                 <label>Email</label>
                                 <i class="fas fa-envelope-open-text"></i>
                                 <input id="email" type="email" placeholder="Email" value="{{data.email}}" name="email"
                                     disabled />
-                            </div>
-                            <div class="textbox">
-                                <label>Username</label>
-                                <i class="fas fa-at"></i>
-                                <input id="username" type="text" placeholder="Username" name="username"
-                                    value="{{data.username}}" disabled />
                             </div>
                             <div id="saveButton" class="d-flex"></div>
                         </form>
@@ -69,4 +65,11 @@
         </div>
     </div>
 </div>
-</div>
+
+<footer>
+        <div class="container-fluid bg-dark text-white fixed-bottom ">
+            <div class="row">
+                <p class="text-center mx-auto">Copyright <span style="font-size:24px">&copy</span> by Musify | All rights reserved</p>
+            </div>
+        </div>
+</footer>

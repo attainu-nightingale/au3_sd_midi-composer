@@ -3,16 +3,17 @@ const actx  = Tone.context;
 const dest  = actx.createMediaStreamDestination();
 const recorder = new MediaRecorder(dest.stream);
 const chunks = [];
-let index=0;
+let pause = false;
+let index = 0;
 let counter = 0;
-var rec=false;
-var flag= false;
-var edit = false;
-var sequencer;
-var liCss;
-var link;
-var blob;
-var base64data;
+let rec = false;
+let flag = false;
+let edit = false;
+let sequencer;
+let liCss;
+let link;
+let blob;
+let base64data;
 
 $('.save-button').removeAttr('id');
 $('.delete-button').remove();
@@ -26,16 +27,18 @@ $("#new-button").on("click",function(){
 
 window.onload= function(){
     sequencer = new Nexus.Sequencer('#grid',{
-    'size': [850,300],
+    'size': [700,400],
     'mode': 'toggle',
-    'rows': 5,
+    'rows': 11,
     'columns': 16
     });
-    sequencer.colorize("accent","#4DF3CE");
+
+    sequencer.colorize('fill','#D1CCCA');
+    sequencer.colorize("accent","#FFB32E");
+    sequencer.colorize('mediumLight', "black");
     $("#add-button").text('Add');
 
     /* PLAY/PAUSE BUTTON */ 
-    var pause=false;
     $("#play-pause-button").on('click',function(){
         if(pause==false){
             $("#play-pause-button").empty();
@@ -56,9 +59,6 @@ window.onload= function(){
         if(pause==true){
             $("#play-pause-button").empty();
             $("#play-pause-button").append("<i class='fas fa-play'><i>")
-            $("#play-pause-button").hover(function() {
-            $(this).css("color","#20db20")
-            });
             pause=false;
             Tone.Transport.stop();
         }
@@ -88,7 +88,7 @@ window.onload= function(){
             }
 
             let beats = new Array(sequencer.rows);
-            let bpm = $('#bpm').val();
+            let bpm = Math.round(Tone.Transport.bpm.value);
             const title = $("#title").val();
             let privacy = $('.onoffswitch-checkbox').is(":checked");
             for(let i=0;i<sequencer.columns;i++)
@@ -138,7 +138,7 @@ window.onload= function(){
                         window.location.replace('/composer');
                     }
                 });
-            }
+            }            
         }   
     });
 
@@ -149,19 +149,74 @@ window.onload= function(){
 
     const synths = [
         new Tone.MembraneSynth().toMaster(),
-        new Tone.MembraneSynth().toMaster(),
-        new Tone.MembraneSynth().toMaster(),
-        new Tone.MembraneSynth().toMaster(),
-        new Tone.MembraneSynth().toMaster()
+        new Tone.Players({
+            'ki':"https://res.cloudinary.com/jayshah/video/upload/v1569154176/music-composer/sound-samples/Kick.wav",
+        }).toMaster(),
+        new Tone.Players({
+            'sn':"https://res.cloudinary.com/jayshah/video/upload/v1569154176/music-composer/sound-samples/snare.wav",
+        }).toMaster(),
+        new Tone.Players({
+			"cl":"https://res.cloudinary.com/jayshah/video/upload/v1569138586/music-composer/sound-samples/clap.wav" ,
+        }, 
+        {
+                "volume": -10,
+        }).toMaster(),
+        new Tone.Players({
+                "oh":"https://res.cloudinary.com/jayshah/video/upload/v1569147681/music-composer/sound-samples/Open_Hat.wav" ,
+        }, 
+        {
+                "volume": -10,
+        }).toMaster(),
+        new Tone.Players({
+                "ch":"https://res.cloudinary.com/jayshah/video/upload/v1569147681/music-composer/sound-samples/closed_hat.wav" ,
+        }, 
+        {
+                "volume": -10,
+        }).toMaster(),
+        new Tone.Synth({
+            oscillator: {
+              type: 'square8',
+              modulationType: 'sine',
+              modulationIndex: 3,
+              harmonicity: 3.4
+            },
+            envelope: {
+              attack: 0.001,
+              decay: 0.1,
+              sustain: 0.1,
+              release: 0.1
+            }
+          }).toMaster(),
+        new Tone.Synth({
+            oscillator: {
+              type: 'square8',
+              modulationType: 'sine',
+              modulationIndex: 3,
+              harmonicity: 3.4
+            },
+            envelope: {
+              attack: 0.001,
+              decay: 0.1,
+              sustain: 0.1,
+              release: 0.1
+            }
+      
+        }).toMaster(),
+        new Tone.Synth(),
+        new Tone.Synth(),
+        new Tone.Synth()
     ];
 
-    const gain = new Tone.Gain(0.5);
+    for(let i=8;i<11;i++)
+        synths[i].oscillator.type = 'sine';
+
+    const gain = new Tone.Gain(1);
     gain.toMaster();
 
     synths.forEach(synth => synth.connect(gain));
     synths.forEach(synth => synth.connect(dest));
 
-    notes = ['C1', 'C2', 'C3', 'C4', 'C5'];
+    notes = ['C1', 'ki', 'sn', 'cl','oh','ch','E2','B2', 'C4', 'C#4', 'D4'];
 
     Tone.Transport.scheduleRepeat(repeat, "16n");
     Tone.Transport.bpm.value = 120;
@@ -179,12 +234,15 @@ window.onload= function(){
                 recorder.stop();
                 Tone.Transport.stop();
             }
+            counter++;
         }
-        counter++;
         for(let i=0;i<sequencer.rows;i++){
             if(sequencer.matrix.pattern[i][step]==1){
                 flag = true;
-                synths[i].triggerAttackRelease(notes[i], '16n');
+                if(i>0 && i<6)
+                    synths[i].get(notes[i]).start();
+                else
+                    synths[i].triggerAttackRelease(notes[i], '16n');
             } 
         }
         if(flag==false && index==0){
@@ -250,11 +308,11 @@ window.onload= function(){
         $('.save-button').removeAttr('id');
         $('#'+liCss).css({'color':'white','background-color':''});
         liCss = $(event.target).attr('id');
-        $('.modal-title').text('Update Creation');        
+        $("#add-button").text('Update');    
         $(event.target).css({'color':'#40e0d0','background-color':'white'});
         const cid = $(event.target).attr('id');   
         $(".save-button").attr('id',cid);
-        $(".button-area").append("<button type='button' class='btn btn-danger blue-gradient mt-5 delete-button'>Delete</button>")
+        $(".button-area").append("<button type='button' class='btn btn-danger mt-5 delete-button'>Delete</button>")
         $(".delete-button").attr('id',cid);
         clearMat();
         $.ajax({
@@ -262,10 +320,10 @@ window.onload= function(){
             type:'GET',
             dataType:'json',
             success: function(data){
+                edit = true;
                 Tone.Transport.bpm.value = data[0].bpm;
                 $('#bpm-text').text(data[0].bpm);
                 $('.onoffswitch-checkbox').prop('checked', data[0].privacy);
-                edit = true;
                 if(pause==true){
                     $("#play-pause-button").empty();
                     $("#play-pause-button").append("<i class='fas fa-play'><i>")
@@ -286,9 +344,9 @@ window.onload= function(){
                 $('#download-beat').remove();
                 $("#download-button").remove();
                 $("#stop-button").after("<button id='download-button'><i class='fas fa-download'></i></button>");        
-                $("#add-button").text('Update');    
+                $('.modal-title').text('Update Creation');        
                 $("#title").val(data[0].title);
-                for(let i=0;i<5;i++){
+                for(let i=0;i<sequencer.rows;i++){
                     for(let j=0;j<data[0].beats[0].length;j++){
                         if(data[0].beats[i][j]==1)
                             sequencer.matrix.toggle.cell(j,i);                                           
@@ -326,10 +384,12 @@ window.onload= function(){
     }
 
     $('#add-button').on('click',function(){
+        let modalFlag = false; 
         if(pause==true){
             $("#play-pause-button").empty();
             $("#play-pause-button").append("<i class='fas fa-play'><i>");
             pause=false;
+            modalFlag = true;
             Tone.Transport.stop();
         }
     
@@ -351,6 +411,12 @@ window.onload= function(){
             Tone.Transport.stop();
             Tone.Transport.start();
         }
-        $('#addModal').modal('show');    
+        if(modalFlag){
+            setTimeout(function(){   
+                $('#addModal').modal('show');    
+            },2000);
+        }
+        else
+            $('#addModal').modal('show');    
     });        
 }

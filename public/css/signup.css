@@ -1,91 +1,78 @@
 @import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
-@import url('https://fonts.googleapis.com/css?family=Lobster|Poppins&display=swap');
-
-/* font-family: 'Lobster', cursive;
-font-family: 'Poppins', sans-serif; */
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono|Ubuntu|Aldrich&display=swap');
 
 * {
+    font-family: 'Roboto Mono', sans-serif; 
     margin: 0;
     padding: 0;
+    font-size: 16px;
     box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
+    margin:0 !important;
+    padding: 0 !important;
 }
 
-form {
-    margin: auto;
+
+.navbar{
+    padding-top:0;
+    padding-bottom: 0;
+    background-color: none !important;
 }
 
-.login-box {
-    width: 65%;
-    height: 100%;
-    position: absolute;
-    color: white;
-    margin-left: 12%;
-    font-size: 0.8rem
+.navbar a{
+    font-family: 'Ubuntu', sans-serif; 
+    color: white !important;
 }
 
-#signup-box h1 {
-    font-family: "Lobster", cursive;
-    color: white;
-    float: left;
-    font-size: 2.5em;
-    border-bottom: 0.2em solid #4caf50;
-    margin-bottom: 1em;
-    padding: 0.5em 0 0.5em 0em;
-    z-index: 5;
+.navbar-toggler {
+    border-color: grey !important;
+}
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
 }
 
-#signup-box {
-    padding-top: 15vh;
+.brandName {
+    /* font-family: 'Lobster', cursive; */
+    font-family: 'Aldrich', sans-serif;
+    font-size: 38px !important;
+    vertical-align: middle !important;
+    background: linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.textbox {
-    width: 100%;
-    font-size: 1em;
-    overflow: hidden;
-    padding: 0.5em 0.1em;
-    border-bottom: 0.2em solid #4caf50;
+ul.navList a{
+    vertical-align: middle !important;
 }
 
-.textbox i {
-    width: 2em;
-    text-align: center;
+ul.navList a:hover { 
+    color: #11fbef !important; 
+    font-size: 1.2rem;
+}
+
+ul>li>a.active{
+    background: linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb) !important; 
+    -webkit-background-clip: text !important;    
+    -webkit-text-fill-color: transparent !important;
+}
+
+.container{
+    margin-top:8%;
+}
+
+#signup-box >div{
+    border-bottom: 2px solid white;
 }
 
 .textbox input {
-    border: none;
+    border:none;
+    border-bottom:2px solid white;
     outline: none;
     background: none;
     color: white;
-    font-size: 1em;
-    width: 80%;
-    float: left;
-    margin: 0.2em;
 }
-
-.sub-btn {
-    width: 95%;
-    background: none;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-    margin: 0.5em 0.5em;
-    border-radius: 20px;
-}
-
-.box-black {
-    background-color: black;
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-    opacity: 0.6;
-}
-
-input:hover::placeholder {
-    color: Gainsboro;
+footer.container-fluid{
+    padding:0 !important;
 }
