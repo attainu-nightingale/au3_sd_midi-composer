@@ -1,5 +1,5 @@
 .mainContainer {
-  height: 100vh;
+  height: calc(100vh - 50px - 57px);
 }
 
 .box2 {
@@ -14,7 +14,7 @@
   color: white;
   float: left;
   font-size: 2em;
-  border-bottom: 0.2em solid #4caf50;
+  border-bottom: 2px solid white;
   margin-bottom: 1em;
   padding: 0.5em 0 0.5em 0em;
 }
@@ -24,7 +24,7 @@
   font-size: 0.7em;
   overflow: hidden;
   padding: 0.8em 0.1em;
-  border-bottom: 0.2em solid #4caf50;
+  border-bottom: 2px solid white;
 }
 
 .textbox i {
@@ -104,10 +104,4 @@
   #avatarCol {
     height: 50vh;
   }
-}
-
-@media (min-width: 576px) and (max-width: 990px) {
-}
-
-@media (min-width: 991px) and (max-width: 1366px) {
 }

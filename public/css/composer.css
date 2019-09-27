@@ -2,9 +2,9 @@
     box-sizing: border-box;
 }
 
-
 .wrapper{
     display:grid;
+    height:calc(100vh - 67px);
     grid-template-columns: 1fr 4fr;
     grid-template-rows: auto 50px;
     grid-template-areas: "sidebar main-area"
@@ -18,11 +18,11 @@
 /*main*/
 .main-section{
     grid-area: main-area;
-    margin-top:40px;
-    margin-left: 190px;
+    margin: auto;
+    margin-top:20px;
     display:grid;
-    grid-template-rows: 60px 1fr 1fr;
-    grid-template-columns: 1fr 2fr;    
+    grid-template-rows: 60px 2fr 1fr;
+    grid-template-columns: 700px;    
     grid-template-areas: "player"
                          "mat"
                          "btns";
@@ -33,10 +33,11 @@
     grid-area: footer;
     color: white;
     text-align: center;
-    overflow: hidden; 
-    left: 0;
     bottom: 0;
-    width:100%;
+    width:100%; 
+}
+.footer-area >p {
+    margin-left:21%;
 }
 
 #control-area{
@@ -72,7 +73,7 @@
 /*play button */
 .ctrl button:nth-child(1){
     border-radius: 50%;
-    width:30px;
+    width:32px;
     background: linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb);
     color:white !important;
 }
@@ -84,7 +85,7 @@
 #stop-button{
     overflow: visible !important;
     border-radius: 50%;
-    width:30px;
+    width:32px;
     background-color:tomato;
     color:white ;
 }
@@ -94,6 +95,7 @@
     border:none;
     color:white;
     background: none;
+    margin-left:18px
 }
 
 #download-button > i{
@@ -106,6 +108,7 @@
 #download-beat {
     margin-left:20px;
     border:none;
+    font-size:20px;
 }
 
 .ctrl button:focus{
@@ -123,7 +126,7 @@
 /*Slider*/
 .my-slider {
 -webkit-appearance: none;
-width: 50%;
+width: 42%;
 background:white;
 outline: none;
 opacity: 0.7;
@@ -162,9 +165,16 @@ cursor: pointer;
 
 /*Delete Button*/
 .delete-button{
+    background-color:#f44235 !important;
+    border:none;
     padding:10px;
-    font-size:24px;
+    font-size:20px;
+    margin-top:20px !important;
     margin-left:15px;
+}
+/*Delete button hover*/
+.delete-button:hover{
+    box-shadow: 2px 2px 2px 2px rgb(185, 141, 150) !important
 }
 
 /*new button*/
@@ -173,9 +183,12 @@ cursor: pointer;
     background:none;
     border:none;
     color:white;
-    margin-top:5px;
     padding:5px;
     border-bottom: 5px solid white;
+}
+
+#new-button:focus{
+    outline:none;
 }
 
 #new-button:hover{
@@ -186,9 +199,15 @@ cursor: pointer;
 #add-button{
     border: none;
     padding:10px;
-    font-size:24px;
+    font-size:20px;
+    margin-top:20px !important;
+    background-color:#81d742;
+    color:white;
 }
 
+#add-button:hover{
+    box-shadow: 2px 2px 2px 2px rgb(164, 212, 212) !important
+}
 .modal-backdrop
 {
     opacity:0.4 !important;
@@ -206,7 +225,7 @@ button.close{
     cursor: pointer;
     padding:5px;
     list-style: none;
-    text-align: center;
+    /* text-align: center; */
     color:white;
     background-color: none;
     border-bottom:2px solid white;

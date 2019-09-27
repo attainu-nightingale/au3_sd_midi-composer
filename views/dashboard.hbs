@@ -3,32 +3,36 @@
     <audio class="" style="width:100%" src="" autoplay loop controls>
     </audio>
 </div>
-        <a id="explore" href="/dashboard/explore" class="btn btn-outline-success btn-sm px-5 py-2 mt-3 mb-3">Explore > </a>
-        <div class="card-deck mx-auto">
-            {{#each data}}
-            <div class="card shadow-lg p-5 mb-3" id="songCard" style="min-width: 15rem;max-width:10rem">
-                <img id="albumArt" class="card-img" src="https://media1.tenor.com/images/6cbd27ab035223f3c93234f47f8916eb/tenor.gif" alt="Album Art">
-                <div class="card-img-overlay p-0 d-flex flex-column text-center" style="opacity:.7;">
-                    <h5 class=" bg-secondary card-title text-warning mt-auto mb-0 px-3 pl-4 py-2">
-                        {{this.title}}
-                    </h5>
-                    <h6 class=" bg-secondary card-subtitle text-warning mb-0 px-3"> {{this.author}} </h6>
-                    <div class="link d-flex bg-secondary rounded-bottom  mb-0">
-                        <a value="{{this.base64data}}" onclick="playThis(event)"
-                            class="card-link bg-secondary px-3 py-1 rounded text-warning">Play</a>
-                    </div>
+    {{#if linkData}}
+    <a id="explore" href={{linkData.link}} class="btn btn-outline-success btn-sm px-5 py-2 mt-3 mb-3">{{linkData.linkTitle}}</a>    
+    {{/if}}
+    <div class="card-deck">
+        {{#each data}}
+        <div class="card shadow-lg p-5 mb-3" id="songCard" style="min-width: 15rem;max-width:10rem">
+            <img id="albumArt" class="card-img" src="https://media1.tenor.com/images/6cbd27ab035223f3c93234f47f8916eb/tenor.gif" alt="Album Art">
+            <div class="card-img-overlay p-0 d-flex flex-column" style="opacity:.7;">
+                <h6 class=" bg-secondary card-title text-warning mt-auto mb-0 py-2 pl-2">Title:{{this.title}}</h6>
+                {{#if username}}
+                    <h6 class=" bg-secondary card-subtitle text-warning mb-0 pl-2">Composer:{{this.username}} </h6>                                               
+                {{else}}
+                    <h6 class=" bg-secondary card-subtitle text-warning mb-0 pl-2">Composer:{{../username}} </h6>                                                                   
+                {{/if}}
+                <div class="link d-flex bg-secondary rounded-bottom  mb-0" style="cursor:pointer">
+                    <a value="{{this.base64data}}" onclick="playThis(event)"
+                        class="card-link bg-secondary pl-2 py-1 pr-2 rounded text-warning">Play</a>
                 </div>
             </div>
-            {{/each}}
         </div>
+        {{/each}}
+    </div>
 </div>
 <br/>
 <br/>
 
 <footer>
-        <div class="container-fluid bg-dark text-white fixed-bottom ">
-            <div class="row">
-                <p class="text-center mx-auto">Copyright &copy by Musify | All rights reserved</p>
-            </div>
+    <div class="container-fluid bg-dark text-white fixed-bottom ">
+        <div class="row">
+            <p class="text-center mx-auto">Copyright <span style="font-size:24px">&copy</span> by Musify | All rights reserved</p>
         </div>
+    </div>
 </footer>

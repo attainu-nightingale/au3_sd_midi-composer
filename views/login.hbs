@@ -1,0 +1,84 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="https://res.cloudinary.com/degnified/image/upload/v1567584916/logo_qwvzmj.png">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/login.css">
+    <title>Musify | Login</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <a class="navbar-brand" id="brand" href="/">
+            <strong class="brandName">MusiFy ***</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav ml-auto navList">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/login">Login<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup">SignUp</a>
+                </li>
+            </ul>
+        </div>
+    </nav>    
+
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <div class="card">
+                <div class="card-header bg-dark">
+                    <h3>Login</h3>
+                </div>
+                <div class="card-body">
+                    <form id="loginForm" action="/login" method="POST">
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-dark"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Username" name="username" required />                             
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-dark"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" class="form-control" placeholder="Password" name="password" required />
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-success">Sign In</button>
+                        </div>
+                        {{#if error}}
+                            <p style="color:red" class="text-center">{{error}}</p>
+                        {{/if}}
+                    </form>
+                </div>
+                <div class="card-footer bg-dark">
+                    <div class="d-flex justify-content-center links">
+                        Don't have an account?<a href="/signup">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+    
+    <footer>
+        <div class="container-fluid bg-dark text-white fixed-bottom ">
+            <div class="row">
+                <p class="text-center mx-auto">Copyright <span style="font-size:24px">&copy</span> by Musify | All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
